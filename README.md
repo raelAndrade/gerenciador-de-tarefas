@@ -1,4 +1,4 @@
-# Projeto de Gerenciador de tarefas
+# Gerenciador de tarefas
 
 #### Para executar a aplicação execute o comando no terminal
 
@@ -6,7 +6,7 @@
 
 ### Execução da aplicação
 
-* [Gerenciador de Tarefas] (http://localhost:8080/)
+* [Gerenciador de Tarefas](http://localhost:8080/)
 
 ### Banco de dados
 
@@ -16,4 +16,4 @@
 
 ### Documentação da API
 
-* [Documentação] (http://localhost:8080/swagger-ui.html#/) 
+* [Documentação](http://localhost:8080/swagger-ui.html#/) 
