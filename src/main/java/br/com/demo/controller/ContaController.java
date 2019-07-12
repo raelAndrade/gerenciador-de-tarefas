@@ -20,7 +20,7 @@ public class ContaController {
 	
 	@GetMapping("/login")
 	public String login() {
-		return "/conta/login";
+		return "conta/login";
 	}
 	
 	@GetMapping("/registration")
