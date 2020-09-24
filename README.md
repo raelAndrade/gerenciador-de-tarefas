@@ -4,7 +4,7 @@
 
 * ./mvnw spring-boot:run
 
-### Execução da aplicação na Heroku
+### Execução da aplicação na local
 
 * [Gerenciador de Tarefas](http://localhost:8080/)
 
