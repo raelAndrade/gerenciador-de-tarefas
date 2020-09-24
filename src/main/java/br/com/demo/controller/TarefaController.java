@@ -35,7 +35,6 @@ public class TarefaController {
 		mv.setViewName("tarefas/listar");
 		String emailUsuario = request.getUserPrincipal().getName(); 
 		mv.addObject("tarefas", tarefaRepository.carregarTarefasPorUsuario(emailUsuario));
-		//mv.addObject("tarefas", tarefaRepository.findAll());
 		return mv;
 	}
 	
@@ -78,7 +77,7 @@ public class TarefaController {
 	}
 	
 	@PostMapping("/alterar")
-	public ModelAndView alterar(@Valid Tarefa tarefa, BindingResult result) {
+	public ModelAndView alterar(@Valid Tarefa tarefa, BindingResult result, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		if(tarefa.getDataExpiracao() == null) {
 			result.rejectValue("dataExpiracao", "tarefa.dataExpiracaoInvalida", "A data de expiração é obrigatória.");
@@ -89,8 +88,11 @@ public class TarefaController {
 			mv.setViewName("tarefas/alterar");
 			mv.addObject(tarefa);
 		}else {
-			mv.setViewName("redirect:/tarefas/listar");
+			String emailUsuario = request.getUserPrincipal().getName();
+			Usuario usuarioLogado = usuarioService.encontrarPorEmail(emailUsuario);
+			tarefa.setUsuario(usuarioLogado);
 			tarefaRepository.save(tarefa);
+			mv.setViewName("redirect:/tarefas/listar");
 		}
 		return mv;
 	}

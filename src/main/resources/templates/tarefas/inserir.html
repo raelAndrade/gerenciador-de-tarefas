@@ -4,47 +4,63 @@
 <meta charset="UTF-8">
 <title>Gerenciador de tarefas - inserir nova tarefa</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 	<div th:replace="layout/layout-padrao :: cabecalho"></div>
 	<div class="container">
-		<h3>Inserção de nova tarefa</h3>
-		<form class="form-horizontal" action="/tarefas/inserir" method="post"
-			th:object="${tarefa}">
-			<div class="row">
-				<div class="form-group col-md-12">
-					<div class="alert alert-danger" role="alert"
-						th:if="${#fields.hasErrors('titulo')}">
-						<label th:errors="*{titulo}" class="validation-message"></label>
+		<div class="col-md-8 col-md-offset-2">
+			<form class="form-horizontal" action="/tarefas/inserir" method="post" th:object="${tarefa}">
+				<input type="hidden" th:field="*{id}">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>CADASTRO</h3><br />
 					</div>
-					<label>Título:</label> <input type="text" class="form-control"
-						th:field="*{titulo}">
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-12">
-					<div class="alert alert-danger" role="alert"
-						th:if="${#fields.hasErrors('descricao')}">
-						<label th:errors="*{descricao}" class="validation-message"></label>
+				
+				<div class="row">
+					<div class="form-group col-md-12">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('titulo')}">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<span th:errors="*{titulo}" class="validation-message"></span>
+						</div>
+						<label>Título:</label>
+						<input type="text" class="form-control" th:field="*{titulo}">
 					</div>
-					<label>Descrição:</label> <input type="text" class="form-control"
-						th:field="*{descricao}">
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-12">
-					<div class="alert alert-danger" role="alert"
-						th:if="${#fields.hasErrors('dataExpiracao')}">
-						<label th:errors="*{dataExpiracao}" class="validation-message"></label>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('descricao')}">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<span th:errors="*{descricao}" class="validation-message"></span>
+						</div>
+						<label>Descrição:</label> <input type="text" class="form-control" th:field="*{descricao}">
 					</div>
-					<label>Data de expiração:</label> <input type="date"
-						class="form-control" th:field="*{dataExpiracao}">
 				</div>
-			</div>
-			<button type="submit" class="btn btn-primary">Salvar</button>
-		</form>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('dataExpiracao')}">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<span th:errors="*{dataExpiracao}" class="validation-message"></span>
+						</div>
+						<label>Data de expiração:</label> <input type="date"
+							class="form-control" th:field="*{dataExpiracao}">
+					</div>
+				</div>
+				
+				<div class="col-lg-12" style="text-align: right;">
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+				
+			</form>
+		</div>
 	</div>
+	
+	<div class="footer text-center">
+		<small>Copyright &copy; Gerenciador de tarefas</small>
+	</div>
+	
 	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -12,7 +12,7 @@ import br.com.demo.model.Tarefa;
 @Repository
 public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 	
-	@Query("SELECT t FROM Tarefa t WHERE t.usuario.email = :emailUsuario") // JPQL - Linguagem de consulta da API de Persistencia do Java
+	@Query("SELECT t FROM Tarefa t WHERE t.usuario.email = :emailUsuario ORDER BY t.dataExpiracao DESC") // JPQL - Linguagem de consulta da API de Persistencia do Java
 	List<Tarefa> carregarTarefasPorUsuario(@Param("emailUsuario") String email);
 
 }

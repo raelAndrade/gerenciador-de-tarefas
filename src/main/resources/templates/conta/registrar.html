@@ -4,39 +4,50 @@
 <meta charset="UTF-8">
 <title>Gerenciador de tarefas - inserir novo usuário</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 	<!-- CABEÇALHO -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Gerenciador de Tarefas</a>
+	<nav class="navbar navbar-inverse" style="border-radius: 0px;">
+		<a class="navbar-brand" href="/">Gerenciador de Tarefas</a>
 	</nav>
 
 	<div class="container">
-		<h3>Inserção de novo usuário</h3>
-		<form class="form-horizontal" action="/registration" method="post"
-			th:object="${usuario}">
-			<div class="row">
-				<div class="form-group col-md-6">
-					<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('email')}">
-						<label th:errors="*{email}" class="validation-message"></label>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<form class="form-horizontal" action="/registration" method="post" th:object="${usuario}" autocomplete="off">
+					<div class="row">
+						<h3>Inserir novo usuário</h3>
+						<br />
+						<div class="form-group">
+							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('email')}">
+								<label th:errors="*{email}" class="validation-message"></label>
+							</div>
+							<label>E-mail:</label> 
+							<input type="text" class="form-control" th:field="*{email}">
+						</div>
 					</div>
-					<label>E-mail:</label> 
-					<input type="text" class="form-control" th:field="*{email}">
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-6">
-					<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('senha')}">
-						<label th:errors="*{senha}" class="validation-message"></label>
+					<div class="row">
+						<div class="form-group">
+							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('senha')}">
+								<label th:errors="*{senha}" class="validation-message"></label>
+							</div>
+							<label>Senha:</label> 
+							<input type="password" class="form-control"	th:field="*{senha}">
+							<br />
+							<button type="submit" class="btn btn-primary btn-md btn-block">Salvar</button>
+						</div>
 					</div>
-					<label>Senha:</label> 
-					<input type="password" class="form-control"	th:field="*{senha}">
-				</div>
+				</form>
 			</div>
-			<button type="submit" class="btn btn-primary">Salvar</button>
-		</form>
+		</div>
 	</div>
+	
+	<div class="footer text-center">
+		<small>Copyright &copy; Gerenciador de tarefas</small>
+	</div>
+	
 	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>

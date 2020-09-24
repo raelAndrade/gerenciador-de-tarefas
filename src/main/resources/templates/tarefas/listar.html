@@ -4,22 +4,28 @@
 <meta charset="UTF-8">
 <title>Gerenciador de Taredas - Listar</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<div th:replace="layout/layout-padrao :: cabecalho"></div>	
 	<div class="container">
-		<h3>Listagem de tarefas</h3>
-		<a href="/tarefas/inserir" class="btn btn-success">Inserir nova tarefa</a>
+		
+		<div class="col-lg-12" style="text-align: right;">
+			<a href="/tarefas/inserir" class="btn btn-primary">Inserir nova tarefa</a>		
+		</div>
+		
+		<h3>TAREFAS</h3>
+		
 		<div th:each="tarefa: ${tarefas}" style="margin: 10px;">
-			<div class="card bg-light mb-3">
-				<div class="card-header" th:text="${tarefa.titulo}"></div>
-				<div class="card-body">
-					<p class="card-text" th:text="${tarefa.descricao}"></p>
-					<p class="card-text" th:text="${'Data de expiração: ' + #dates.format(tarefa.dataExpiracao, 'dd/MM/yyyy')}"></p>
-					<p class="card-text" style="color:green;" th:if="${tarefa.dataExpiracao.after(new java.util.Date())}">Em dia</p>
-					<p class="card-text" style="color:red;" th:if="${tarefa.dataExpiracao.before(new java.util.Date())}">Atrasada</p>
+			<div class="panel panel-primary">
+				<div class="panel-heading" th:text="${tarefa.titulo}"></div>
+				<div class="panel-body">
+					<p class="" th:text="${tarefa.descricao}"></p>
+					<p class="" th:text="${'Data de expiração: ' + #dates.format(tarefa.dataExpiracao, 'dd/MM/yyyy')}"></p>
+					<p class="" style="color:green;" th:if="${tarefa.dataExpiracao.after(new java.util.Date())}">Em dia</p>
+					<p class="" style="color:red;" th:if="${tarefa.dataExpiracao.before(new java.util.Date())}">Atrasada</p>
 				</div>
-				<div class="card-footer bg-ligth">
+				<div class="panel-footer">
 					<p>
 						<a th:href="@{/tarefas/alterar/{id}(id=${tarefa.id})}">Alterar</a> |
 						<a th:href="@{/tarefas/excluir/{id}(id=${tarefa.id})}">Excluir</a> |
@@ -29,6 +35,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="footer text-center">
+		<small>Copyright &copy; Gerenciador de tarefas</small>
+	</div>
+	
 	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
