@@ -4,9 +4,13 @@
 
 * ./mvnw spring-boot:run
 
-### Execução da aplicação
+### Execução da aplicação na Heroku
 
 * [Gerenciador de Tarefas](http://localhost:8080/)
+
+### Execução da aplicação na Heroku
+
+* [Gerenciador de Tarefas](https://frozen-refuge-96847.herokuapp.com/)
 
 ### Banco de dados
 
@@ -16,4 +20,4 @@
 
 ### Documentação da API
 
-* [Documentação](http://localhost:8080/swagger-ui.html#/) 
+* [Documentação] (http://localhost:8080/swagger-ui.html)
