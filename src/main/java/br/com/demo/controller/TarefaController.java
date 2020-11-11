@@ -36,6 +36,7 @@ public class TarefaController {
 	public ModelAndView listar(HttpServletRequest request, @PageableDefault(size = 3, sort = {"id"}) Pageable pageable) {
 		String emailUsuario = request.getUserPrincipal().getName();
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("usuario", emailUsuario);
 		mv.setViewName("tarefas/listar");
 		mv.addObject("tarefas", tarefaRepository.carregarTarefasPorUsuario(emailUsuario, pageable));
 		return mv;
@@ -45,6 +46,7 @@ public class TarefaController {
 	public ModelAndView carregaTarefaPorPaginacao(HttpServletRequest request, @PageableDefault(size = 3) Pageable pageable, ModelAndView model) {
 		String emailUsuario = request.getUserPrincipal().getName();
 		Page<Tarefa> pageTarefa = tarefaRepository.carregarTarefasPorUsuario(emailUsuario, pageable);
+		model.addObject("usuario", emailUsuario);
 		model.addObject("tarefas", pageTarefa);
 		model.setViewName("tarefas/listar");
 		return model;
@@ -104,6 +106,7 @@ public class TarefaController {
 			Usuario usuarioLogado = usuarioService.encontrarPorEmail(emailUsuario);
 			tarefa.setUsuario(usuarioLogado);
 			tarefaRepository.save(tarefa);
+			mv.addObject("usuario", emailUsuario);
 			mv.setViewName("redirect:/tarefas/listar");
 		}
 		return mv;
