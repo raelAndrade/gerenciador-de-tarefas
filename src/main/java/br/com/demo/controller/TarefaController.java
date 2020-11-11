@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +33,21 @@ public class TarefaController {
 	private UsuarioService usuarioService;
 	
 	@GetMapping("/listar")
-	public ModelAndView listar(HttpServletRequest request) {
+	public ModelAndView listar(HttpServletRequest request, @PageableDefault(size = 3, sort = {"id"}) Pageable pageable) {
+		String emailUsuario = request.getUserPrincipal().getName();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("tarefas/listar");
-		String emailUsuario = request.getUserPrincipal().getName(); 
-		mv.addObject("tarefas", tarefaRepository.carregarTarefasPorUsuario(emailUsuario));
+		mv.addObject("tarefas", tarefaRepository.carregarTarefasPorUsuario(emailUsuario, pageable));
 		return mv;
+	}
+	
+	@GetMapping("/paginacao")
+	public ModelAndView carregaTarefaPorPaginacao(HttpServletRequest request, @PageableDefault(size = 3) Pageable pageable, ModelAndView model) {
+		String emailUsuario = request.getUserPrincipal().getName();
+		Page<Tarefa> pageTarefa = tarefaRepository.carregarTarefasPorUsuario(emailUsuario, pageable);
+		model.addObject("tarefas", pageTarefa);
+		model.setViewName("tarefas/listar");
+		return model;
 	}
 	
 	@GetMapping("/inserir")
@@ -52,7 +64,7 @@ public class TarefaController {
 		if(tarefa.getDataExpiracao() == null) {
 			result.rejectValue("dataExpiracao", "tarefa.dataExpiracaoInvalida", "A data de expiração é obrigatória.");
 		}else if(tarefa.getDataExpiracao().before(new Date())) {
-			result.rejectValue("dataExpiracao", "tarefa.dataExpiracaoInvalida", "A data de expiração não pode ser anterior à data atual.");
+			result.rejectValue("dataExpiracao", "tarefa.dataExpiracaoInvalida", "A data de expiração não pode ser anterior à data atual e maior que a data atual.");
 		}
 		if(result.hasErrors()) {
 			mv.setViewName("tarefas/inserir");

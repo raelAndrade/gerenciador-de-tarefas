@@ -4,16 +4,83 @@
 <meta charset="UTF-8">
 <title>Gerenciador de tarefas - página inicial</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/webjars/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 	<div th:replace="layout/layout-padrao :: cabecalho"></div>
-	<div class="container">
-	
-	
-	
-	</div>
+		<div class="container">
+			<div>
+				<div class="col-lg-6 col-md-8 card-esquerdo">
+					<h1 class="titulo">Gerencie suas tarefas online</h1>
+					<hr class="linha-divisoria">
+					<h2 class="subtitulo">O objetivo desse sistema é gerenciar suas tarefas, 
+						proporcionando melhor organização para executá-las.</h2>
+					
+					<div class="text-center imagem">
+						<img alt="" src="../img/tarefas.jpg" class="img-thumbnail">
+					</div>
+				</div>
+				
+				<div class="col-lg-3 col-md-2 card-direito">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fas fa-clipboard-check fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge total" th:text="${totalConcluidas}"></div>
+                                    <div>Concluída(s)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 card-direito">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fas fa-calendar-times fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge total" th:text="${totalNaoConcluidas}">26</div>
+                                    <div>Não concluída(s)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 ferramentas">
+					<h3 class="subtitulo">É um protótipo desenvolvido para fins de aprendizagem, usando as seguintes tecnologias:</h3>
+					<div class="row">
+						<div class="col-lg-6 col-md-6">
+							<ul>
+								<li>Linguagem Java 8</li>
+								<li>Spring Boot</li>
+								<li>Spring Data</li>
+								<li>Spring Security</li>
+								<li>Thymeleaf</li>
+								<li>Bootstrap</li>
+								<li>MySQL - Banco de teste</li>
+							</ul>
+						</div>
+						<div class="col-lg-6 col-md 6">
+							<ul>
+								<li>PostgreSQL - Banco de Produção</li>
+								<li>Plataforma cloud: Heroku</li>
+								<li>Deploy da aplicação - Pipeline Heroku</li>
+								<li>Ferramenta Git - Versionamento de código.</li>
+							</ul>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<div class="footer text-center">
 		<small>Copyright &copy; Gerenciador de tarefas</small>

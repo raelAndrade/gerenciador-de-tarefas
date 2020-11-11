@@ -11,12 +11,12 @@
 	<div class="container">
 		
 		<div class="col-lg-12" style="text-align: right;">
-			<a href="/tarefas/inserir" class="btn btn-primary">Inserir nova tarefa</a>		
+			<a href="/tarefas/inserir" class="btn btn-primary">Nova tarefa</a>		
 		</div>
 		
-		<h3>TAREFAS</h3>
+		<h3 class="lista-tarefas">LISTA DE TAREFAS</h3>
 		
-		<div th:each="tarefa: ${tarefas}" style="margin: 10px;">
+		<div th:each="tarefa: ${tarefas.content}" style="margin: 10px;">
 			<div class="panel panel-primary">
 				<div class="panel-heading" th:text="${tarefa.titulo}"></div>
 				<div class="panel-body">
@@ -36,7 +36,33 @@
 		</div>
 	</div>
 	
-	<div class="footer text-center">
+	<div class="container d-flex justify-content-center">
+		<nav aria-label="Navegação de página exemplo" style="text-align: center;">
+			<ul class="pagination">
+				<li class="page-item" th:if="${tarefas.hasPrevious()}">
+					<a class="page-link" th:href="@{/tarefas/paginacao(page=${tarefas.number-1}, size=${tarefas.size})}" aria-label="Anterior">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Anterior</span>
+					</a>
+				</li>
+				<th:block th:each="index : ${#numbers.sequence(0, tarefas.totalPages - 1)}">
+					<li class="page-item">
+						<a class="page-link" th:href="@{/tarefas/paginacao(page=${index}, size=${tarefas.size})}">[[ ${index} + 1 ]]</a>
+					</li>
+				</th:block>
+				<li class="page-item" th:if="${tarefas.hasNext()}">
+					<a class="page-link" th:href="@{/tarefas/paginacao(page=${tarefas.number+1}, size=${tarefas.size})}" aria-label="Próximo"> 
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Próximo</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	
+	<br /><br /><br />
+	
+	<div class="footer text-center mb-3">
 		<small>Copyright &copy; Gerenciador de tarefas</small>
 	</div>
 	

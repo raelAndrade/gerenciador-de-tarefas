@@ -27,3 +27,53 @@ img.img-logo {
     background-color: #eef3fa;
     border-color: #ddd;
 }
+
+.titulo {
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 3rem;
+}
+
+.subtitulo {
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 1.5rem;
+}
+
+.lista-tarefas {
+	margin-top: 40px;	
+}
+
+.linha-divisoria {
+	border-top: 1px solid #ccc;
+	height: 2px;
+}
+
+.imagem {
+	margin-top: 20px;
+}
+
+.img-thumbnail {
+	border: 0px;
+	border-radius: 15px;
+}
+
+.card-esquerdo {
+	padding-top: 10px;
+}
+
+.card-direito {
+	padding-top: 25px;
+}
+
+.ferramentas {
+	padding-top: 50px;
+}
+
+.total {
+	font-size: 3.5rem;
+}
+
+.usuario {
+	color: #ffffff;
+	position: relative;
+	top: 15px;
+}
